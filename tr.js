@@ -83,7 +83,7 @@ function retranslateElements() {
             el.innerText = tr(key);
     });
 
-    document.title = tr("meta.title");
+    document.title = tr("page.title");
 }
 
 /**
