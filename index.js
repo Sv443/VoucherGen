@@ -10,17 +10,19 @@ function onLoad() {
 
     const printBtn = document.querySelector("#printBtn");
     printBtn.addEventListener("click", () => {
-        if(!isGenerated)
-            return alert(tr("alert.generate_vouchers_first"));
+        generateVouchers();
 
-        if(confirm(tr("alert.print_confirm"))) {
-            document.querySelector("#form-page")?.remove();
+        setTimeout(() => {
+            if(getSettings().removeSettingsForPrint) {
+                if(!confirm(tr("alert.print_confirm")))
+                    return;
+                document.querySelector("#form-page")?.remove();
+            }
+
             window.print();
-        }
+        }, 50);
     });
 }
-
-const vouchersPerRow = 3;
 
 function renderType(settings, type) {
     return settings.addBullets
@@ -28,21 +30,15 @@ function renderType(settings, type) {
         : type;
 }
 
-function generateVouchers() {
-    // #region clear output:
+const formSettingsCfg = [
+    ["numRows", (el) => Number(el.value)],
+    ["numPages", (el) => Number(el.value)],
+    ["voucherType", (el) => el.value.split("\n").map(s => s.trim()).filter(s => s.length > 0)],
+    ["addBullets", (el) => el.checked],
+    ["removeSettingsForPrint", (el) => el.checked],
+];
 
-    const outputCont = document.querySelector("#output");
-    outputCont.innerHTML = "";
-
-    // #region read settings:
-
-    const formSettingsCfg = [
-        ["numRows", (el) => Number(el.value)],
-        ["numPages", (el) => Number(el.value)],
-        ["addBullets", (el) => el.checked],
-        ["voucherType", (el) => el.value.split("\n").map(s => s.trim()).filter(s => s.length > 0)],
-    ];
-
+function getSettings() {
     const settings = {};
     for(const [id, parse] of formSettingsCfg) {
         const el = document.getElementById(id);
@@ -54,6 +50,26 @@ function generateVouchers() {
     }
 
     console.log("Settings:", settings);
+
+    return settings;
+}
+
+const vouchersPerRow = 3;
+
+function generateVouchers() {
+    // #region clear output:
+
+    const outputCont = document.querySelector("#output");
+    outputCont.innerHTML = "";
+
+    // #region read settings:
+
+    const settings = getSettings();
+
+    if(settings.voucherType.length === 0) {
+        alert(tr("alert.provide_voucher_types"));
+        return;
+    }
 
     // #region stats
 

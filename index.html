@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title class="tr" data-key="page.title">Voucher Generator</title>
+
     <link rel="stylesheet" href="./index.css">
     <script src="./tr.js" defer></script>
     <script src="./index.js" defer></script>
@@ -12,9 +13,9 @@
 <body>
     <div class="container">
         <div id="form-page" class="page">
-            <h1 class="tr" data-key="page.title"></h1>
+            <h2 class="tr" data-key="page.title"></h2>
             <div id="form-container">
-                <table id="settingsTable">
+                <table id="settings-table">
                     <tr>
                         <td>
                             <label for="language" class="tr" data-key="settings.language"></label>
@@ -44,7 +45,7 @@
                             <label for="voucherType" class="tr" data-key="settings.voucher_types"></label>
                         </td>
                         <td>
-                            <textarea id="voucherType" rows="15" cols="30"></textarea>
+                            <textarea id="voucherType"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -52,21 +53,30 @@
                             <label for="addBullets" class="tr" data-key="settings.add_bullets"></label>
                         </td>
                         <td>
-                            <input id="addBullets" type="checkbox" />
+                            <input id="addBullets" type="checkbox" checked />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="removeSettingsForPrint" class="tr"
+                                data-key="settings.remove_settings_for_print"></label>
+                        </td>
+                        <td>
+                            <input id="removeSettingsForPrint" type="checkbox" checked />
                         </td>
                     </tr>
                 </table>
 
                 <hr />
 
-                <div id="statsContainer">
+                <div id="stats-container">
                     <div id="vouchersPerType"></div>
                     <div id="vouchersTotal"></div>
                 </div>
 
-                <div id="buttonsContainer">
-                    <button id="generateBtn" class="tr" data-key="btn.generate">Wertmarken generieren</button>
-                    <button id="printBtn" class="tr" data-key="btn.print">Drucken</button>
+                <div id="buttons-container">
+                    <button id="generateBtn" class="tr" data-key="btn.generate"></button>
+                    <button id="printBtn" class="tr" data-key="btn.generate_and_print"></button>
                 </div>
             </div>
         </div>
