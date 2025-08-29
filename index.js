@@ -95,7 +95,7 @@ function generateVouchers() {
                     page.appendChild(row);
                 }
 
-                const voucher = createVoucher(settings, type);
+                const voucher = createVoucherElement(settings, type);
                 page.lastChild.appendChild(voucher);
             }
 
@@ -106,7 +106,7 @@ function generateVouchers() {
     isGenerated = true;
 }
 
-function createVoucher(settings, type) {
+function createVoucherElement(settings, type) {
     const voucher = document.createElement("div");
     voucher.classList.add("voucher");
     

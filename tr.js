@@ -1,6 +1,8 @@
 //#region data
 
-/** Translation strings. */
+/** @typedef {"en"|"de"} LangCode */
+
+/** @type {Record<LangCode, Record<string, string>>} Translation strings. */
 const trans = {
     en: {
         "alert.print_confirm": "To print, the settings will be removed.\nTo regenerate the vouchers, please reload the page (key: F5).\n\nContinue?",
@@ -8,15 +10,15 @@ const trans = {
         "btn.generate_and_print": "Generate & Print",
         "btn.generate": "Generate Vouchers",
         "meta.lang_name": "English",
-        "page.title": "Voucher Generator",
-        "settings.add_bullets": "Add bullets:",
-        "settings.language": "Language:",
-        "settings.pages_per_voucher_type": "Pages per voucher type:",
-        "settings.remove_settings_for_print": "Remove settings for print:",
-        "settings.rows_per_page": "Rows per page:",
-        "settings.voucher_types": "Voucher types (one per line):",
-        "stats.vouchers_per_type": "Vouchers per type:",
-        "stats.vouchers_total": "Vouchers total:",
+        "meta.page_title": "Voucher Generator",
+        "settings.add_bullets": "⏺ With bullets:",
+        "settings.language": "🌐 Language:",
+        "settings.pages_per_voucher_type": "📜 Pages per voucher type:",
+        "settings.remove_settings_for_print": "⚙️ Remove settings for print:",
+        "settings.rows_per_page": "📝 Rows per page:",
+        "settings.voucher_types": "🔠 Voucher types (one per line):",
+        "stats.vouchers_per_type": "🏷 Vouchers per type:",
+        "stats.vouchers_total": "🧮 Vouchers total:",
     },
     de: {
         "alert.print_confirm": "Zum Drucken werden die Einstellungen entfernt.\nZum erneuten Generieren der Wertmarken bitte die Seite neu laden (Taste: F5).\n\nFortfahren?",
@@ -24,22 +26,22 @@ const trans = {
         "btn.generate_and_print": "Generieren & Drucken",
         "btn.generate": "Wertmarken generieren",
         "meta.lang_name": "Deutsch",
-        "page.title": "Wertmarken-Generator",
-        "settings.add_bullets": "Mit Aufzählungszeichen:",
-        "settings.language": "Sprache:",
-        "settings.pages_per_voucher_type": "Seiten je Wertmarken-Typ:",
-        "settings.remove_settings_for_print": "Einstellungen zum Drucken entfernen:",
-        "settings.rows_per_page": "Zeilen je Seite:",
-        "settings.voucher_types": "Wertmarken-Typen (einer pro Zeile):",
-        "stats.vouchers_per_type": "Wertmarken pro Typ:",
-        "stats.vouchers_total": "Wertmarken gesamt:",
+        "meta.page_title": "Wertmarken-Generator",
+        "settings.add_bullets": "⏺ Mit Aufzählungszeichen:",
+        "settings.language": "🌐 Sprache (Language):",
+        "settings.pages_per_voucher_type": "📜 Seiten je Wertmarken-Typ:",
+        "settings.remove_settings_for_print": "⚙️ Einstellungen zum Drucken entfernen:",
+        "settings.rows_per_page": "📝 Zeilen je Seite:",
+        "settings.voucher_types": "🔠 Wertmarken-Typen (einer pro Zeile):",
+        "stats.vouchers_per_type": "🏷 Wertmarken pro Typ:",
+        "stats.vouchers_total": "🧮 Wertmarken gesamt:",
     },
 };
 
-/** Map of BCP-47 codes to translation identifiers. */
+/** @type {[string, string[]][]} Map of BCP-47 code variants to translation identifiers. */
 const langCodeMap = [
-    ["en", ["en", "en-US", "en-GB", "en-AU", "en-CA"]],
-    ["de", ["de", "de-DE", "de-AT", "de-CH"]],
+    ["en", ["en", "en-AU", "en-CA", "en-GB", "en-IN", "en-NZ", "en-US", "en-ZA"]],
+    ["de", ["de", "de-AT", "de-CH", "de-DE", "de-LI", "de-LU"]],
 ];
 
 const fallbackLang = "en";
@@ -85,7 +87,7 @@ function retranslateElements() {
             el.innerText = tr(key);
     });
 
-    document.title = tr("page.title");
+    document.title = tr("meta.page_title");
 }
 
 /**

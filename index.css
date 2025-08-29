@@ -105,20 +105,19 @@ button {
     align-items: center;
     text-align: center;
     border: 1px solid #000;
-    padding: 5mm;
+    padding: 2mm;
     width: 80mm;
-    height: 50mm;
+    height: calc(var(--page-height) / 6);
 }
 
 .voucher-image {
-    padding: 2mm;
+    padding-top: 2mm;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }
 
 .voucher-text {
-    padding-top: 2mm;
     font-size: 18pt;
     font-weight: bold;
     text-wrap: balance;
