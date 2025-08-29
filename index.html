@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title class="tr" data-key="page.title">Voucher Generator</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./tr.js" defer></script>
+    <script src="./index.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="form-page" class="page">
+            <h1 class="tr" data-key="page.title"></h1>
+            <div id="form-container">
+                <table id="settingsTable">
+                    <tr>
+                        <td>
+                            <label for="language" class="tr" data-key="settings.language"></label>
+                        </td>
+                        <td>
+                            <select id="lang-select"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="numRows" class="tr" data-key="settings.rows_per_page"></label>
+                        </td>
+                        <td>
+                            <input type="number" id="numRows" value="6" min="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="numPages" class="tr" data-key="settings.pages_per_voucher_type"></label>
+                        </td>
+                        <td>
+                            <input type="number" id="numPages" value="1" min="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="voucherType" class="tr" data-key="settings.voucher_types"></label>
+                        </td>
+                        <td>
+                            <textarea id="voucherType" rows="15" cols="30"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="addBullets" class="tr" data-key="settings.add_bullets"></label>
+                        </td>
+                        <td>
+                            <input id="addBullets" type="checkbox" />
+                        </td>
+                    </tr>
+                </table>
+
+                <hr />
+
+                <div id="statsContainer">
+                    <div id="vouchersPerType"></div>
+                    <div id="vouchersTotal"></div>
+                </div>
+
+                <div id="buttonsContainer">
+                    <button id="generateBtn" class="tr" data-key="btn.generate">Wertmarken generieren</button>
+                    <button id="printBtn" class="tr" data-key="btn.print">Drucken</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="output">
+
+        </div>
+    </div>
+</body>
+
+</html>
