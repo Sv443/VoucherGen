@@ -1,9 +1,13 @@
+<div style="text-align: center;" align="center">
+
 [🇩🇪 Auf Deutsch](./README.de.md)
 
----
+<br>
 
 ## [Voucher Generator](https://vouchers.sv443.me/)
 Simple customizable generator for printable A4 voucher slips - for fairs, events, etc.
+
+</div>
 
 <br>
 

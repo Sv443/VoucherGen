@@ -1,9 +1,13 @@
+<div style="text-align: center;" align="center">
+
 [🇬🇧 🇺🇸 In English](./README.md)
 
----
+<br>
 
 ## [Wertmarken-Generator](https://vouchers.sv443.me/)
 Einfacher, anpassbarer Generator für druckbare A4-Wertmarken - für Messen, Veranstaltungen, etc.
+
+</div>
 
 <br>
 
