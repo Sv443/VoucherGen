@@ -14,17 +14,20 @@ function onLoad() {
 
     const printBtn = document.querySelector("#printBtn");
     printBtn.addEventListener("click", () => {
-        generateVouchers();
+        if(generateVouchers()) {
+            setTimeout(() => {
+                const formPage = document.querySelector("#form-page");
 
-        setTimeout(() => {
-            if(getSettings().removeSettingsForPrint) {
-                if(!confirm(tr("alert.print_confirm")))
-                    return;
-                document.querySelector("#form-page")?.remove();
-            }
+                if(getSettings().removeSettingsForPrint)
+                    formPage?.classList.add("hidden");
 
-            window.print();
-        }, 50);
+                window.print();
+
+                setTimeout(() => {
+                    formPage?.classList.remove("hidden");
+                }, 100);
+            }, 100);
+        }
     });
 
     initializeDropzone();
@@ -80,7 +83,7 @@ function generateVouchers() {
 
     if(settings.voucherTypes.length === 0) {
         alert(tr("alert.provide_voucher_types"));
-        return;
+        return false;
     }
 
     // #region stats
@@ -119,7 +122,7 @@ function generateVouchers() {
         }
     }
 
-    isGenerated = true;
+    return isGenerated = true;
 }
 
 function createVoucherElement(settings, type) {
