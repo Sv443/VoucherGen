@@ -1,0 +1,39 @@
+name: Deploy to GH Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+permissions:
+  pull-requests: write
+  issues: write
+  actions: write
+  deployments: write
+  contents: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup GH Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy to GH Pages
+        uses: peaceiris/actions-gh-pages@v4
+        id: deployment
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
