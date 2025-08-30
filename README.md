@@ -1,5 +1,5 @@
 ## [VoucherGen](https://vouchers.sv443.me/)
-Simple printable voucher/token slip generator for fairs, events, etc.
+Simple customizable generator for printable A4 voucher slips - for fairs, events, etc.
 
 <br>
 
