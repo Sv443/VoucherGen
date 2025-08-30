@@ -16,8 +16,10 @@ const trans = {
         "settings.pages_per_voucher_type": "📜 Pages per voucher type:",
         "settings.remove_settings_for_print": "⚙️ Remove settings for print:",
         "settings.rows_per_page": "📝 Rows per page:",
+        "settings.voucher_image": "🌄 Voucher image:",
+        "settings.voucher_image.dropzone_text": "Drop an image here or click to browse",
         "settings.voucher_types": "🔠 Voucher types (one per line):",
-        "stats.vouchers_per_type": "🏷 Vouchers per type:",
+        "stats.vouchers_per_type": "📚 Vouchers per type:",
         "stats.vouchers_total": "🧮 Vouchers total:",
     },
     de: {
@@ -32,8 +34,10 @@ const trans = {
         "settings.pages_per_voucher_type": "📜 Seiten je Wertmarken-Typ:",
         "settings.remove_settings_for_print": "⚙️ Einstellungen zum Drucken entfernen:",
         "settings.rows_per_page": "📝 Zeilen je Seite:",
+        "settings.voucher_image": "🌄 Wertmarken-Bild:",
+        "settings.voucher_image.dropzone_text": "Ziehe ein Bild hierher, oder klicke zum Auswählen",
         "settings.voucher_types": "🔠 Wertmarken-Typen (einer pro Zeile):",
-        "stats.vouchers_per_type": "🏷 Wertmarken pro Typ:",
+        "stats.vouchers_per_type": "📚 Wertmarken pro Typ:",
         "stats.vouchers_total": "🧮 Wertmarken gesamt:",
     },
 };
@@ -95,6 +99,10 @@ function retranslateElements() {
  * @returns {string}
  */
 function getDefaultLang() {
+    const storedLang = localStorage.getItem("lang");
+    if(storedLang && typeof trans[storedLang] === "object")
+        return storedLang;
+
     const navLangs = [navigator.language, ...(navigator.languages ?? [])];
 
     for(const navLang of navLangs) {
@@ -120,6 +128,7 @@ function getDefaultLang() {
 function setLang(lang) {
     document.documentElement.lang = currentLang = lang;
     retranslateElements();
+    localStorage.setItem("lang", lang);
     return currentLang;
 }
 

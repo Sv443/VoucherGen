@@ -3,19 +3,13 @@
     --page-height: 297mm;
 }
 
+
+
+/* #region print and screen */
+
 @page {
     size: A4;
     margin: 10mm;
-}
-
-body {
-    font-family: sans-serif;
-    font-size: 14pt;
-    margin: 0;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 @media screen {
@@ -33,6 +27,22 @@ body {
 
 
 
+/* #region global */
+
+body {
+    font-family: sans-serif;
+    font-size: 14pt;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+/* #region page */
+
 .page {
     page-break-after: always;
     break-after: page;
@@ -45,6 +55,8 @@ body {
 }
 
 
+
+/* #region form elements */
 
 textarea {
     min-width: 100px;
@@ -68,12 +80,94 @@ input[type="checkbox"] {
 
 
 
+/* #region dropzone */
+
+.dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: balance;
+}
+
+.dropzone:hover {
+    border-color: #007bff;
+    background-color: #f8f9fa;
+}
+
+.dropzone.dragover {
+    border-color: #007bff;
+    background-color: #e3f2fd;
+}
+
+.dropzone-content {
+    pointer-events: none;
+}
+
+.dropzone-text {
+    font-weight: 500;
+}
+
+.dropzone-link {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.image-preview {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-preview img {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.image-preview #remove-image {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-preview #remove-image:hover {
+    background: #c82333;
+}
+
+
+
 h1, h2, h3, h4, h5, h6 {
     margin: 6px 10px 12px 10px;
 }
 
 #form-page, #stats-container {
     padding: 10px;
+}
+
+#stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 #settings-table {

@@ -72,10 +72,27 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="voucherType" class="tr" data-key="settings.voucher_types"></label>
+                            <label for="voucherTypes" class="tr" data-key="settings.voucher_types"></label>
                         </td>
                         <td>
-                            <textarea id="voucherType"></textarea>
+                            <textarea id="voucherTypes"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="voucherImage" class="tr" data-key="settings.voucher_image"></label>
+                        </td>
+                        <td>
+                            <div id="dropzone" class="dropzone">
+                                <div class="dropzone-content">
+                                    <p class="dropzone-text tr" data-key="settings.voucher_image.dropzone_text"></p>
+                                </div>
+                                <input type="file" id="file-input" accept="image/*" style="display: none;">
+                                <div id="image-preview" class="image-preview" style="display: none;">
+                                    <img id="preview-img">
+                                    <button id="remove-image" type="button">✕</button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>

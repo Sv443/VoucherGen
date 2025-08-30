@@ -2,7 +2,11 @@
 
 document.addEventListener("DOMContentLoaded", () => onLoad());
 
+/** Whether vouchers have been generated yet. */
 let isGenerated = false;
+
+/** @type {string|ArrayBuffer|null} */
+let voucherImageData = null;
 
 function onLoad() {
     const genBtn = document.querySelector("#generateBtn");
@@ -22,6 +26,8 @@ function onLoad() {
             window.print();
         }, 50);
     });
+
+    initializeDropzone();
 }
 
 function renderType(settings, type) {
@@ -33,7 +39,7 @@ function renderType(settings, type) {
 const formSettingsCfg = [
     ["numRows", (el) => Number(el.value)],
     ["numPages", (el) => Number(el.value)],
-    ["voucherType", (el) => el.value.split("\n").map(s => s.trim()).filter(s => s.length > 0)],
+    ["voucherTypes", (el) => el.value.split("\n").map(s => s.trim()).filter(s => s.length > 0)],
     ["addBullets", (el) => el.checked],
     ["removeSettingsForPrint", (el) => el.checked],
 ];
@@ -41,15 +47,21 @@ const formSettingsCfg = [
 function getSettings() {
     const settings = {};
     for(const [id, parse] of formSettingsCfg) {
-        const el = document.getElementById(id);
-        if(!el) {
-            console.error(`Element with id ${id} not found`);
-            return;
+        try {
+            const el = document.getElementById(id);
+            if(!el) {
+                console.error(`Element with id ${id} not found`);
+                return;
+            }
+            settings[id] = parse(el);
         }
-        settings[id] = parse(el);
+        catch(e) {
+            console.error(`Error parsing setting ${id}:`, e);
+            continue;
+        }
     }
 
-    console.log("Settings:", settings);
+    console.log("Parsed settings:", settings);
 
     return settings;
 }
@@ -66,24 +78,25 @@ function generateVouchers() {
 
     const settings = getSettings();
 
-    if(settings.voucherType.length === 0) {
+    if(settings.voucherTypes.length === 0) {
         alert(tr("alert.provide_voucher_types"));
         return;
     }
 
     // #region stats
 
+    const vouchersPerType = settings.numPages * settings.numRows * vouchersPerRow;
+    const vouchersTotal = vouchersPerType * settings.voucherTypes.length;
+
     const vouchersPerTypeEl = document.querySelector("#vouchersPerType");
-    const totalVouchers = settings.numPages * settings.numRows * vouchersPerRow;
-    vouchersPerTypeEl.innerText = `${tr("stats.vouchers_per_type")} ${totalVouchers}`;
+    vouchersPerTypeEl.innerText = `${tr("stats.vouchers_per_type")} ${vouchersPerType}`;
 
     const vouchersTotalEl = document.querySelector("#vouchersTotal");
-    const totalTypes = settings.voucherType.length;
-    vouchersTotalEl.innerText = `${tr("stats.vouchers_total")} ${totalVouchers * totalTypes}`;
+    vouchersTotalEl.innerText = `${tr("stats.vouchers_total")} ${vouchersTotal}`;
 
     // #region generate vouchers:
 
-    for(const type of settings.voucherType) {
+    for(const type of settings.voucherTypes) {
         for(let i = 0; i < settings.numPages; i++) {
             const page = document.createElement("div");
             page.classList.add("page", "voucher-page");
@@ -116,10 +129,84 @@ function createVoucherElement(settings, type) {
 
     const imgEl = document.createElement("img");
     imgEl.classList.add("voucher-image");
-    imgEl.src = "./fallback.png";
+    imgEl.src = voucherImageData ?? "./fallback.png";
 
     voucher.appendChild(textEl);
     voucher.appendChild(imgEl);
 
     return voucher;
+}
+
+//#region dropzone
+
+function initializeDropzone() {
+    const dropzone = document.querySelector("#dropzone");
+    const fileInput = document.querySelector("#file-input");
+    const dropzoneContent = document.querySelector(".dropzone-content");
+    const imagePreview = document.querySelector("#image-preview");
+    const previewImg = document.querySelector("#preview-img");
+    const removeImageBtn = document.querySelector("#remove-image");
+
+    dropzone.addEventListener("click", () => {
+        if (!imagePreview.style.display || imagePreview.style.display === 'none') {
+            fileInput.click();
+        }
+    });
+
+    fileInput.addEventListener("change", (e) => {
+        handleFiles(e.target.files);
+    });
+
+    dropzone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropzone.classList.add("dragover");
+    });
+
+    dropzone.addEventListener("dragleave", () => {
+        dropzone.classList.remove("dragover");
+    });
+
+    dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("dragover");
+        handleFiles(e.dataTransfer.files);
+    });
+
+    removeImageBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        removeImage();
+    });
+
+    function handleFiles(files) {
+        if(files.length === 0) return;
+
+        const file = files[0];
+
+        if (!file.type.startsWith("image/")) {
+            alert("Please select a valid image file.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            voucherImageData = e.target.result;
+            showImagePreview(voucherImageData, file.name);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function showImagePreview(dataUri, fileName) {
+        previewImg.src = dataUri;
+        previewImg.title = fileName;
+        dropzoneContent.style.display = "none";
+        imagePreview.style.display = "flex";
+    }
+
+    function removeImage() {
+        voucherImageData = null;
+        previewImg.src = "";
+        fileInput.value = "";
+        dropzoneContent.style.display = "block";
+        imagePreview.style.display = "none";
+    }
 }
