@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+
+    <meta name="application-name" content="Voucher Generator">
+    <meta name="pagename" content="Voucher Generator">
+    <meta property="og:title" content="Voucher Generator">
+
+    <meta name="description" content="Simple printable voucher/token slip generator for fairs, events, etc.">
+    <meta name="og:description" content="Simple printable voucher/token slip generator for fairs, events, etc.">
+
+    <meta name="keywords" content="voucher, token, slip, generator, printable, event, fair">
+    <meta name="author" content="Sv443">
+    <meta name="copyright" content="2025 Sven Fehler (Sv443)">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="en_AU">
+    <meta property="og:locale:alternate" content="en_CA">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:locale:alternate" content="en_IN">
+    <meta property="og:locale:alternate" content="en_NZ">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="en_ZA">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="de_AT">
+    <meta property="og:locale:alternate" content="de_CH">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="de_LI">
+    <meta property="og:locale:alternate" content="de_LU">
+
+    <title class="tr" data-key="meta.page_title">Voucher Generator</title>
+
+    <base target="_blank">
+
+    <link rel="stylesheet" href="./index.css">
+    <script src="./tr.js" defer></script>
+    <script src="./index.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="form-page" class="page">
+            <a href="https://github.com/Sv443/VoucherGen" target="_blank" rel="noopener noreferrer">
+                <h2 class="tr" data-key="meta.page_title"></h2>
+            </a>
+
+            <hr />
+
+            <div id="form-container">
+                <table id="settings-table">
+                    <tr>
+                        <td>
+                            <label for="language" class="tr" data-key="settings.language"></label>
+                        </td>
+                        <td>
+                            <select id="language"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="numRows" class="tr" data-key="settings.rows_per_page"></label>
+                        </td>
+                        <td>
+                            <input id="numRows" type="number" value="6" min="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="numPages" class="tr" data-key="settings.pages_per_voucher_type"></label>
+                        </td>
+                        <td>
+                            <input id="numPages" type="number" value="1" min="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="voucherTypes" class="tr" data-key="settings.voucher_types"></label>
+                        </td>
+                        <td>
+                            <textarea id="voucherTypes"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="file-input" class="tr" data-key="settings.voucher_image"></label>
+                        </td>
+                        <td>
+                            <div id="dropzone" class="dropzone">
+                                <div class="dropzone-content">
+                                    <p class="dropzone-text tr" data-key="settings.voucher_image.dropzone_text"></p>
+                                </div>
+                                <input type="file" id="file-input" accept="image/*" style="display: none;">
+                                <div id="image-preview" class="image-preview" style="display: none;">
+                                    <img id="preview-img">
+                                    <button id="remove-image" type="button">✕</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="addBullets" class="tr" data-key="settings.add_bullets"></label>
+                        </td>
+                        <td>
+                            <input id="addBullets" type="checkbox" checked />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="removeSettingsForPrint" class="tr"
+                                data-key="settings.remove_settings_for_print"></label>
+                        </td>
+                        <td>
+                            <input id="removeSettingsForPrint" type="checkbox" checked />
+                        </td>
+                    </tr>
+                </table>
+
+                <hr />
+                <br>
+
+                <div id="buttons-container">
+                    <button id="generateBtn" class="tr" data-key="btn.generate"></button>
+                    <button id="printBtn" class="tr" data-key="btn.generate_and_print"></button>
+                </div>
+
+                <div id="stats-container">
+                    <div id="vouchersPerType"></div>
+                    <div id="vouchersTotal"></div>
+                    <div id="voucherPages"></div>
+                </div>
+            </div>
+
+            <br>
+            <hr />
+            <br>
+
+            <div id="notes">
+                <h3 class="tr" data-key="notes.title"></h3>
+                <ul>
+                    <li class="tr" data-key="notes.save_as_pdf"></li>
+                    <li class="tr" data-key="notes.image_aspect_ratio"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="output">
+
+        </div>
+    </div>
+</body>
+
+</html>
