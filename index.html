@@ -51,7 +51,7 @@
                             <label for="language" class="tr" data-key="settings.language"></label>
                         </td>
                         <td>
-                            <select id="lang-select"></select>
+                            <select id="language"></select>
                         </td>
                     </tr>
                     <tr>
@@ -59,7 +59,7 @@
                             <label for="numRows" class="tr" data-key="settings.rows_per_page"></label>
                         </td>
                         <td>
-                            <input type="number" id="numRows" value="6" min="1">
+                            <input id="numRows" type="number" value="6" min="1">
                         </td>
                     </tr>
                     <tr>
@@ -67,7 +67,7 @@
                             <label for="numPages" class="tr" data-key="settings.pages_per_voucher_type"></label>
                         </td>
                         <td>
-                            <input type="number" id="numPages" value="1" min="1">
+                            <input id="numPages" type="number" value="1" min="1">
                         </td>
                     </tr>
                     <tr>
@@ -80,7 +80,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="voucherImage" class="tr" data-key="settings.voucher_image"></label>
+                            <label for="file-input" class="tr" data-key="settings.voucher_image"></label>
                         </td>
                         <td>
                             <div id="dropzone" class="dropzone">
@@ -115,16 +115,29 @@
                 </table>
 
                 <hr />
-
-                <div id="stats-container">
-                    <div id="vouchersPerType"></div>
-                    <div id="vouchersTotal"></div>
-                </div>
+                <br>
 
                 <div id="buttons-container">
                     <button id="generateBtn" class="tr" data-key="btn.generate"></button>
                     <button id="printBtn" class="tr" data-key="btn.generate_and_print"></button>
                 </div>
+
+                <div id="stats-container">
+                    <div id="vouchersPerType"></div>
+                    <div id="vouchersTotal"></div>
+                    <div id="voucherPages"></div>
+                </div>
+            </div>
+
+            <br>
+            <hr />
+            <br>
+
+            <div id="notes">
+                <h3 class="tr" data-key="notes.title"></h3>
+                <ul>
+                    <li class="tr" data-key="notes.save_as_pdf"></li>
+                </ul>
             </div>
         </div>
 

@@ -94,6 +94,9 @@ function generateVouchers() {
     const vouchersTotalEl = document.querySelector("#vouchersTotal");
     vouchersTotalEl.innerText = `${tr("stats.vouchers_total")} ${vouchersTotal}`;
 
+    const voucherPagesEl = document.querySelector("#voucherPages");
+    voucherPagesEl.innerText = `${tr("stats.voucher_pages")} ${settings.numPages * settings.voucherTypes.length}`;
+
     // #region generate vouchers:
 
     for(const type of settings.voucherTypes) {
@@ -183,7 +186,7 @@ function initializeDropzone() {
         const file = files[0];
 
         if (!file.type.startsWith("image/")) {
-            alert("Please select a valid image file.");
+            alert(tr("alert.invalid_file_type"));
             return;
         }
 
