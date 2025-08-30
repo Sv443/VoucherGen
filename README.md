@@ -1,4 +1,8 @@
-## [VoucherGen](https://vouchers.sv443.me/)
+[🇩🇪 Auf Deutsch](./README.de.md)
+
+---
+
+## [Voucher Generator](https://vouchers.sv443.me/)
 Simple customizable generator for printable A4 voucher slips - for fairs, events, etc.
 
 <br>
@@ -12,7 +16,7 @@ Simple customizable generator for printable A4 voucher slips - for fairs, events
 
 ### Usage
 To use the generator tool, visit this page: https://vouchers.sv443.me/  
-No installation or server are required and all data stays on your computer.
+No installation is required and all data stays on your computer.
 
 <br>
 
