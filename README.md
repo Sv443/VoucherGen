@@ -1,5 +1,5 @@
 ## VoucherGen
-Very simple printable voucher/token slip generator for fairs, events, etc.
+Simple printable voucher/token slip generator for fairs, events, etc.
 
 <br>
 
