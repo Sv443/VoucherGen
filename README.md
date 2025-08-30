@@ -1,4 +1,4 @@
-## VoucherGen
+## [VoucherGen](https://vouchers.sv443.me/)
 Simple printable voucher/token slip generator for fairs, events, etc.
 
 <br>
@@ -11,10 +11,8 @@ Simple printable voucher/token slip generator for fairs, events, etc.
 <br>
 
 ### Usage
-For now, download and extract the repository (green `Code` button near the top), then open `index.html` in your browser.  
-No installation or server are required, all data stays on your computer.  
-  
-Later on I might host a live version online (which will behave exactly the same but will also automatically update to the latest version).
+To use the generator tool, visit this page: https://vouchers.sv443.me/  
+No installation or server are required and all data stays on your computer.
 
 <br>
 
