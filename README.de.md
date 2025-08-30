@@ -11,6 +11,7 @@ Einfacher, anpassbarer Generator für druckbare A4-Wertmarken - für Messen, Ver
 - Erzeugt druckbare Wertmarken im A4-Format
 - Anpassbarer Text und Grafiken
 - Anpassbare Anzahl an Wertmarken pro Seite und insgesamt
+- Export als PDF-Datei
 
 <br>
 

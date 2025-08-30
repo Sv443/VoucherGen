@@ -11,6 +11,7 @@ Simple customizable generator for printable A4 voucher slips - for fairs, events
 - Generate printable voucher/token slips in A4 format
 - Customizable text and graphics
 - Customizable amount of vouchers per page and in total
+- Export as PDF file
 
 <br>
 
