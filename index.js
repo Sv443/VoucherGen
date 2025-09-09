@@ -153,10 +153,15 @@ function initializeDropzone() {
     const previewImg = document.querySelector("#preview-img");
     const removeImageBtn = document.querySelector("#remove-image");
 
+    dropzone.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " ")
+            if (!imagePreview.style.display || imagePreview.style.display === 'none')
+                fileInput.click();
+    });
+
     dropzone.addEventListener("click", () => {
-        if (!imagePreview.style.display || imagePreview.style.display === 'none') {
+        if (!imagePreview.style.display || imagePreview.style.display === 'none')
             fileInput.click();
-        }
     });
 
     fileInput.addEventListener("change", (e) => {
@@ -176,6 +181,13 @@ function initializeDropzone() {
         e.preventDefault();
         dropzone.classList.remove("dragover");
         handleFiles(e.dataTransfer.files);
+    });
+
+    removeImageBtn.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " ") {
+            e.stopPropagation();
+            removeImage();
+        }
     });
 
     removeImageBtn.addEventListener("click", (e) => {

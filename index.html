@@ -92,14 +92,15 @@
                             <label for="file-input" class="tr" data-key="settings.voucher_image"></label>
                         </td>
                         <td>
-                            <div id="dropzone" class="dropzone">
+                            <div id="dropzone" class="dropzone" tabindex="0" role="button">
                                 <div class="dropzone-content">
                                     <p class="dropzone-text tr" data-key="settings.voucher_image.dropzone_text"></p>
                                 </div>
-                                <input type="file" id="file-input" accept="image/*" style="display: none;">
+                                <input type="file" id="file-input" accept="image/*" style="display: none;"
+                                    tabindex="-1">
                                 <div id="image-preview" class="image-preview" style="display: none;">
                                     <img id="preview-img">
-                                    <button id="remove-image" type="button">✕</button>
+                                    <button id="remove-image" type="button" tabindex="0">✕</button>
                                 </div>
                             </div>
                         </td>
